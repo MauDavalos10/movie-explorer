@@ -15,13 +15,13 @@ const SearchInput: React.FC = () => {
     <div className="flex flex-col sm:flex-row gap-4 mb-8">
       <input
         type="text"
-        className="flex-grow p-2 border border-gray-300 rounded"
-        placeholder="Search for a movie"
+        className="flex-grow p-2 border border-gray-300 rounded-md"
+        placeholder="Search for a movie..."
         value={query}
         onChange={(e) => setQuery(e.target.value)}
       />
       <button
-        className="bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-600 transition-colors"
+        className="bg-blue-400 text-white py-2 px-4 rounded hover:bg-blue-600 transition-colors"
         onClick={handleSearch}
       >
         Search
