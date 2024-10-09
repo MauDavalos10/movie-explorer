@@ -10,7 +10,7 @@ const LazyMovieCard = React.lazy(() => import("./MovieCard"));
 
 const MovieGrid: React.FC = () => {
   const dispatch = useDispatch<AppDispatch>();
-  const { results, status, error } = useSelector(
+  const { results, status, error, totalResults } = useSelector(
     (state: RootState) => state.movies,
   );
   const query = useSelector((state: RootState) => state.query);
@@ -57,7 +57,7 @@ const MovieGrid: React.FC = () => {
         <div className="flex justify-center mt-4">
           <Stack spacing={2}>
             <Pagination
-              count={10}
+              count={Math.ceil(totalResults / 10)}
               page={pageIndex}
               onChange={handlePageChange}
             />
