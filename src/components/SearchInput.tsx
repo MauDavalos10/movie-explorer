@@ -1,17 +1,16 @@
 import React, { useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { AppDispatch, RootState } from "../redux/store";
+import { useDispatch } from "react-redux";
+import { AppDispatch } from "../redux/store";
 import { setQuery } from "../redux/slices/querySlice";
 import { searchMovies } from "../redux/slices/movieSlice";
 
 const SearchInput: React.FC = () => {
   const dispatch = useDispatch<AppDispatch>();
-  const pageIndex = useSelector((state: RootState) => state.pageIndex);
   const [inputQuery, setInputQuery] = useState("");
 
   const handleSearch = () => {
     dispatch(setQuery(inputQuery));
-    dispatch(searchMovies({ query: inputQuery, pageIndex }));
+    dispatch(searchMovies({ query: inputQuery, pageIndex: 1 }));
   };
 
   return (

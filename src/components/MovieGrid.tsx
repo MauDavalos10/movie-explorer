@@ -20,6 +20,7 @@ const MovieGrid: React.FC = () => {
     event: React.ChangeEvent<unknown>,
     newPage: number,
   ) => {
+    event.preventDefault(); //pending later
     dispatch(setPageIndex(newPage));
     dispatch(searchMovies({ query, pageIndex: newPage }));
   };
