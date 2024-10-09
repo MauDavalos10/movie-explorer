@@ -23,7 +23,7 @@ const SearchInput: React.FC = () => {
         onChange={(e) => setInputQuery(e.target.value)}
       />
       <button
-        className="bg-blue-400 text-white py-2 px-4 rounded hover:bg-blue-600 transition-colors"
+        className="bg-[#636363] text-white py-2 px-4 rounded hover:bg-[#3b3b3b] transition-colors"
         onClick={handleSearch}
       >
         Search

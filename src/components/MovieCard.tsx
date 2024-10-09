@@ -1,7 +1,7 @@
 import React from "react";
 import { Movie } from "../redux/slices/movieSlice";
 import LocalMoviesIcon from "@mui/icons-material/LocalMovies";
-import LiveTvIcon from "@mui/icons-material/LiveTv";
+import SmartDisplayIcon from "@mui/icons-material/SmartDisplay";
 import { Chip } from "@mui/material";
 
 interface MovieCardProps {
@@ -27,7 +27,7 @@ const MovieCard: React.FC<MovieCardProps> = ({ movie }) => {
               movie.Type === "movie" ? (
                 <LocalMoviesIcon fontSize={"small"} />
               ) : (
-                <LiveTvIcon fontSize={"small"} />
+                <SmartDisplayIcon fontSize={"small"} />
               )
             }
             size={"small"}
