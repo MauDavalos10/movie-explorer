@@ -2,8 +2,8 @@ import React from "react";
 
 function App() {
   return (
-    <div className="App">
-      <h1>Baseline</h1>
+    <div className="h-screen bg-blue-300">
+      <h1 className="bg-blue-300">Baseline</h1>
     </div>
   );
 }
