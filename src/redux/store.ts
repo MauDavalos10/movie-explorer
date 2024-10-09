@@ -1,9 +1,13 @@
 import { configureStore } from "@reduxjs/toolkit";
-import moviesReducer from "../redux/slices/movieSlice";
+import moviesReducer from "./slices/movieSlice";
+import queryReducer from "./slices/querySlice";
+import pageIndexReducer from "./slices/pageIndexSlice";
 
 export const store = configureStore({
   reducer: {
     movies: moviesReducer,
+    query: queryReducer,
+    pageIndex: pageIndexReducer,
   },
 });
 

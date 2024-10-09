@@ -1,6 +1,12 @@
 import { createSlice, createAsyncThunk, PayloadAction } from "@reduxjs/toolkit";
 import { searchMoviesAPI } from "../../services/api";
 
+export interface ResultRequest {
+  Response: string;
+  Error?: string;
+  Search?: Movie[];
+}
+
 export interface Movie {
   imdbID: string;
   Title: string;
@@ -11,7 +17,7 @@ export interface Movie {
 
 interface MoviesState {
   results: Movie[];
-  status: "idle" | "loading" | "succeeded" | "failed";
+  status: "idle" | "loading" | "succeeded" | "failed" | "not-found";
   error: string | null;
 }
 
@@ -23,9 +29,8 @@ const initialState: MoviesState = {
 
 export const searchMovies = createAsyncThunk(
   "movies/searchMovies",
-  async (query: string) => {
-    const response = await searchMoviesAPI(query);
-    return response.Search;
+  async ({ query, pageIndex }: { query: string; pageIndex: number }) => {
+    return await searchMoviesAPI(query, pageIndex);
   },
 );
 
@@ -40,9 +45,10 @@ const moviesSlice = createSlice({
       })
       .addCase(
         searchMovies.fulfilled,
-        (state, action: PayloadAction<Movie[]>) => {
-          state.status = "succeeded";
-          state.results = action.payload;
+        (state, action: PayloadAction<ResultRequest>) => {
+          state.status =
+            action.payload.Response === "True" ? "succeeded" : "not-found";
+          state.results = action.payload.Search ?? [];
         },
       )
       .addCase(searchMovies.rejected, (state, action) => {
