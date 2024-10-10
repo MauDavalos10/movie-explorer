@@ -1,29 +1,16 @@
 import React, { Suspense } from "react";
-import { useSelector, useDispatch } from "react-redux";
-import { RootState, AppDispatch } from "../redux/store";
-import { setPageIndex } from "../redux/slices/pageIndexSlice";
-import { searchMovies } from "../redux/slices/movieSlice";
-import { Pagination, Stack } from "@mui/material";
+import { useSelector } from "react-redux";
+import { RootState } from "../redux/store";
 import CustomSpinner from "./CustomSpinner";
+import CustomPagination from "./CustomPagination";
 
 const LazyMovieCard = React.lazy(() => import("./MovieCard"));
 const LazyNoResults = React.lazy(() => import("./NoResults"));
 
 const MovieGrid: React.FC = () => {
-  const dispatch = useDispatch<AppDispatch>();
-  const { results, status, error, totalResults } = useSelector(
+  const { results, status, error } = useSelector(
     (state: RootState) => state.movies,
   );
-  const query = useSelector((state: RootState) => state.query);
-  const pageIndex = useSelector((state: RootState) => state.pageIndex);
-
-  const handlePageChange = (
-    _event: React.ChangeEvent<unknown>,
-    newPage: number,
-  ) => {
-    dispatch(setPageIndex(newPage));
-    dispatch(searchMovies({ query, pageIndex: newPage }));
-  };
 
   if (status === "loading") {
     return <CustomSpinner />;
@@ -70,15 +57,7 @@ const MovieGrid: React.FC = () => {
 
       {results.length > 0 && (
         <div className="flex justify-center pt-10">
-          <Stack spacing={2}>
-            <Pagination
-              count={Math.ceil(totalResults / 10)}
-              page={pageIndex}
-              onChange={handlePageChange}
-              sx={{ color: "#efbf04" }}
-              size={"large"}
-            />
-          </Stack>
+          <CustomPagination />
         </div>
       )}
     </>
