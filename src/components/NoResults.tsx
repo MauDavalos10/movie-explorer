@@ -21,7 +21,7 @@ const NoResults: React.FC = () => {
       </h2>
       <p className="text-gray-500">
         We couldn't find any movies matching your search. Please try a different
-        query.
+        movie.
       </p>
     </div>
   );

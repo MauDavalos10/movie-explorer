@@ -25,8 +25,12 @@ const MovieGrid: React.FC = () => {
     dispatch(searchMovies({ query, pageIndex: newPage }));
   };
 
-  if (status === "loading") {
-    return <CustomSpinner />;
+  // if (status === "loading") {
+  //   return <CustomSpinner />;
+  // }
+
+  if (status === "failed") {
+    return <div className="text-center text-red-500">{error}</div>;
   }
 
   if (status === "not-found") {
