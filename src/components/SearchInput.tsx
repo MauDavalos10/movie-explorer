@@ -25,6 +25,7 @@ const SearchInput: React.FC = () => {
       <button
         className="bg-[#636363] text-white py-2 px-4 rounded hover:bg-[#3b3b3b] transition-colors"
         onClick={handleSearch}
+        style={{ color: "#efbf04" }}
       >
         Search
       </button>

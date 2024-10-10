@@ -23,7 +23,12 @@ const Header = () => {
           >
             <MenuIcon />
           </IconButton>
-          <Typography variant="h6" component="div" className="grow">
+          <Typography
+            sx={{ color: "#efbf04" }}
+            variant="h6"
+            component="div"
+            className="grow"
+          >
             Movie Explorer
           </Typography>
           <Button color="inherit">Login</Button>
