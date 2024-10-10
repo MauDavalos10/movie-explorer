@@ -1,4 +1,5 @@
-# Movie Search and Favorites App
+# Movie Search App
+[Live Project](https://movie-explorer-chi.vercel.app/)
 
 ## Overview
 This React-based web application allows users to search for movies and TV shows, view details about them, and save their favorites. It utilizes the OMDB API for fetching movie data and implements state management with Redux Toolkit.
@@ -50,8 +51,7 @@ Use the search bar to look for movies or TV shows.
 
 # See more of my work
 Mauricio Dávalos
-[My porrfolio](https://mau-portfolio-three.vercel.app/)
-[Live Project](https://movie-explorer-chi.vercel.app/)
+[My porfolio](https://mau-portfolio-three.vercel.app/)
 
 
 # Shout out
