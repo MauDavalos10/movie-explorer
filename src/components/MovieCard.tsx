@@ -2,16 +2,30 @@ import React from "react";
 import { Movie } from "../redux/slices/movieSlice";
 import LocalMoviesIcon from "@mui/icons-material/LocalMovies";
 import SmartDisplayIcon from "@mui/icons-material/SmartDisplay";
-import { Chip } from "@mui/material";
+import { Button, Chip } from "@mui/material";
 import StarIcon from "@mui/icons-material/Star";
+import StarBorderIcon from "@mui/icons-material/StarBorder";
+import { useDispatch, useSelector } from "react-redux";
+import { AppDispatch, RootState } from "../redux/store";
+import { toggleFavoriteMovie } from "../redux/slices/favoriteMoveSlice";
 
 interface MovieCardProps {
   movie: Movie;
 }
 
 const MovieCard: React.FC<MovieCardProps> = ({ movie }) => {
+  const favorites = useSelector((state: RootState) => state.favoriteMovie);
+
+  const dispatch = useDispatch<AppDispatch>();
+
+  const handleFavorites = (movie: Movie) => {
+    dispatch(toggleFavoriteMovie(movie));
+  };
+
+  console.log("fav->", favorites);
+
   return (
-    <div className="group max-w-[300px] bg-white rounded-xl shadow-lg overflow-hidden cursor-pointer transition-all duration-300 hover:shadow-2xl relative">
+    <div className="group max-w-[300px] bg-white rounded-xl shadow-lg overflow-hidden transition-all duration-300 hover:shadow-2xl relative">
       <div className="relative h-[400px] overflow-hidden">
         <img
           src={movie.Poster !== "N/A" ? movie.Poster : "./images/no-image.png"}
@@ -49,7 +63,16 @@ const MovieCard: React.FC<MovieCardProps> = ({ movie }) => {
         </h2>
       </div>
       <div className="absolute top-4 right-4 bg-white/20 backdrop-blur-sm rounded-full p-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300 transform translate-y-2 group-hover:translate-y-0">
-        <StarIcon className="text-yellow-400" />
+        <Button
+          onClick={() => handleFavorites(movie)}
+          className="cursor-pointer"
+        >
+          {favorites.some((favorite) => favorite.imdbID === movie.imdbID) ? (
+            <StarIcon className="text-yellow-400" />
+          ) : (
+            <StarBorderIcon className="text-yellow-400" />
+          )}
+        </Button>
       </div>
     </div>
   );
