@@ -4,7 +4,7 @@ import { RootState, AppDispatch } from "../redux/store";
 import { setPageIndex } from "../redux/slices/pageIndexSlice";
 import { searchMovies } from "../redux/slices/movieSlice";
 import NoResults from "./NoResults";
-import { Pagination, Stack } from "@mui/material";
+import { CircularProgress, Pagination, Stack } from "@mui/material";
 
 const LazyMovieCard = React.lazy(() => import("./MovieCard"));
 
@@ -17,16 +17,19 @@ const MovieGrid: React.FC = () => {
   const pageIndex = useSelector((state: RootState) => state.pageIndex);
 
   const handlePageChange = (
-    event: React.ChangeEvent<unknown>,
+    _event: React.ChangeEvent<unknown>,
     newPage: number,
   ) => {
-    event.preventDefault(); //pending later
     dispatch(setPageIndex(newPage));
     dispatch(searchMovies({ query, pageIndex: newPage }));
   };
 
   if (status === "loading") {
-    return <div className="text-center">Loading</div>;
+    return (
+      <Stack sx={{ color: "grey.500" }} spacing={2} direction="row">
+        <CircularProgress color="inherit" />
+      </Stack>
+    );
   }
 
   if (status === "failed") {
@@ -40,7 +43,7 @@ const MovieGrid: React.FC = () => {
   return (
     <>
       <Suspense fallback={<div>Loading movies...</div>}>
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4">
+        <div className="grid justify-items-center grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4">
           {results.map((movie) => (
             <Suspense
               key={movie.imdbID}
