@@ -26,9 +26,9 @@ const MovieGrid: React.FC = () => {
 
   if (status === "loading") {
     return (
-      <Stack sx={{ color: "grey.500" }} spacing={2} direction="row">
-        <CircularProgress color="inherit" />
-      </Stack>
+      <div className="flex justify-center">
+        <CircularProgress sx={{ color: "grey.500" }} color="inherit" />
+      </div>
     );
   }
 
