@@ -22,8 +22,6 @@ const MovieCard: React.FC<MovieCardProps> = ({ movie }) => {
     dispatch(toggleFavoriteMovie(movie));
   };
 
-  console.log("fav->", favorites);
-
   return (
     <div className="group max-w-[300px] bg-white rounded-xl shadow-lg overflow-hidden transition-all duration-300 hover:shadow-2xl relative">
       <div className="relative h-[400px] overflow-hidden">
