@@ -4,7 +4,8 @@ import { RootState, AppDispatch } from "../redux/store";
 import { setPageIndex } from "../redux/slices/pageIndexSlice";
 import { searchMovies } from "../redux/slices/movieSlice";
 import NoResults from "./NoResults";
-import { CircularProgress, Pagination, Stack } from "@mui/material";
+import { Pagination, Stack } from "@mui/material";
+import CustomSpinner from "./CustomSpinner";
 
 const LazyMovieCard = React.lazy(() => import("./MovieCard"));
 
@@ -25,15 +26,7 @@ const MovieGrid: React.FC = () => {
   };
 
   if (status === "loading") {
-    return (
-      <div className="flex justify-center">
-        <CircularProgress sx={{ color: "grey.500" }} color="inherit" />
-      </div>
-    );
-  }
-
-  if (status === "failed") {
-    return <div className="text-center text-red-500">{error}</div>;
+    return <CustomSpinner />;
   }
 
   if (status === "not-found") {
