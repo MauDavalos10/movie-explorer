@@ -7,7 +7,7 @@ import { searchMovies } from "../redux/slices/movieSlice";
 
 const CustomPagination = () => {
   const theme = useTheme();
-  const isMobile = useMediaQuery(theme.breakpoints.down("md"));
+  const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
   const dispatch = useDispatch<AppDispatch>();
   const { totalResults } = useSelector((state: RootState) => state.movies);
   const query = useSelector((state: RootState) => state.query);
@@ -23,6 +23,7 @@ const CustomPagination = () => {
   return (
     <Stack spacing={2}>
       <Pagination
+        data-testid="pagination-mui"
         count={Math.ceil(totalResults / 10)}
         page={pageIndex}
         onChange={handlePageChange}
