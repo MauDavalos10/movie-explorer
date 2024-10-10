@@ -2,10 +2,10 @@ import React, { Suspense } from "react";
 import { useSelector } from "react-redux";
 import { RootState } from "../redux/store";
 import CustomSpinner from "./CustomSpinner";
-import CustomPagination from "./CustomPagination";
 
 const LazyMovieCard = React.lazy(() => import("./MovieCard"));
 const LazyNoResults = React.lazy(() => import("./NoResults"));
+const LazyPagination = React.lazy(() => import("./CustomPagination"));
 
 const MovieGrid: React.FC = () => {
   const { results, status, error } = useSelector(
@@ -56,9 +56,11 @@ const MovieGrid: React.FC = () => {
       </Suspense>
 
       {results.length > 0 && (
-        <div className="flex justify-center pt-10">
-          <CustomPagination />
-        </div>
+        <Suspense fallback={null}>
+          <div className="flex justify-center pt-10">
+            <LazyPagination />
+          </div>
+        </Suspense>
       )}
     </>
   );

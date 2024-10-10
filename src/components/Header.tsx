@@ -31,7 +31,6 @@ const Header = () => {
           >
             Movie Explorer
           </Typography>
-          <Button color="inherit">Login</Button>
         </Toolbar>
       </AppBar>
     </Box>
