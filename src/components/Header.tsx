@@ -54,8 +54,8 @@ const Header = () => {
             ))}
           </Swiper>
           <div className="absolute left-1/2 top-20 transform -translate-x-1/2">
-            <span className="flex bg-[#3b3b3b] gap-2 rounded-md p-2">
-              <p className="text-4xl md:text-md text-yellow-400">
+            <span className="flex bg-[#3b3b3b] gap-2 rounded-md p-2 items-center">
+              <p className="text-lg md:text-sm text-yellow-400">
                 {favorites.length > 0
                   ? "Favorite View"
                   : "No Favorite movies added"}
