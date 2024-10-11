@@ -7,7 +7,7 @@ import StarIcon from "@mui/icons-material/Star";
 import StarBorderIcon from "@mui/icons-material/StarBorder";
 import { useDispatch, useSelector } from "react-redux";
 import { AppDispatch, RootState } from "../redux/store";
-import { toggleFavoriteMovie } from "../redux/slices/favoriteMoveSlice";
+import { toggleFavoriteMovie } from "../redux/slices/favoriteMovieSlice";
 
 interface MovieCardProps {
   movie: Movie;

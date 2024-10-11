@@ -2,7 +2,7 @@ import { configureStore } from "@reduxjs/toolkit";
 import moviesReducer from "./slices/movieSlice";
 import queryReducer from "./slices/querySlice";
 import pageIndexReducer from "./slices/pageIndexSlice";
-import favoriteMovieReducer from "./slices/favoriteMoveSlice";
+import favoriteMovieReducer from "./slices/favoriteMovieSlice";
 
 export const store = configureStore({
   reducer: {

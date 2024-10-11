@@ -4,7 +4,7 @@ import "@testing-library/jest-dom";
 import { Provider } from "react-redux";
 // @ts-ignore
 import configureStore from "redux-mock-store";
-import { toggleFavoriteMovie } from "../../redux/slices/favoriteMoveSlice";
+import { toggleFavoriteMovie } from "../../redux/slices/favoriteMovieSlice";
 import { Movie } from "../../redux/slices/movieSlice";
 import MovieCard from "../MovieCard";
 
