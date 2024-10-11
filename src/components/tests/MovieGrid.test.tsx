@@ -4,18 +4,18 @@ import "@testing-library/jest-dom";
 import { Provider } from "react-redux";
 // @ts-ignore
 import configureStore from "redux-mock-store";
-import MovieGrid from "../components/MovieGrid";
+import MovieGrid from "../MovieGrid";
 
-jest.mock("../components/MovieCard", () => ({ movie }: any) => (
+jest.mock("../MovieCard", () => ({ movie }: any) => (
   <div data-testid="movie-card">{movie.title}</div>
 ));
-jest.mock("../components/NoResults", () => () => (
+jest.mock("../NoResults", () => () => (
   <div data-testid="no-results">No results found</div>
 ));
-jest.mock("../components/CustomPagination", () => () => (
+jest.mock("../CustomPagination", () => () => (
   <div data-testid="pagination">Pagination</div>
 ));
-jest.mock("../components/CustomSpinner", () => () => (
+jest.mock("../CustomSpinner", () => () => (
   <div data-testid="custom-spinner">Loading...</div>
 ));
 
@@ -28,7 +28,7 @@ describe("MovieGrid Component", () => {
     jest.clearAllMocks();
   });
 
-  test("renders loading spinner when status is loading", () => {
+  it("renders loading spinner when status is loading", () => {
     store = mockStore({
       movies: { status: "loading", results: [], error: null },
     });
@@ -42,7 +42,7 @@ describe("MovieGrid Component", () => {
     expect(screen.getByTestId("custom-spinner")).toBeInTheDocument();
   });
 
-  test("renders error message when status is failed", () => {
+  it("renders error message when status is failed", () => {
     store = mockStore({
       movies: { status: "failed", results: [], error: "Error message" },
     });
@@ -56,7 +56,7 @@ describe("MovieGrid Component", () => {
     expect(screen.getByText("Error message")).toBeInTheDocument();
   });
 
-  test("renders NoResults component when status is not-found", async () => {
+  it("renders NoResults component when status is not-found", async () => {
     store = mockStore({
       movies: { status: "not-found", results: [], error: null },
     });
@@ -72,7 +72,7 @@ describe("MovieGrid Component", () => {
     });
   });
 
-  test("renders movie cards and pagination when results are available", async () => {
+  it("renders movie cards and pagination when results are available", async () => {
     const mockMovies = [
       { imdbID: "1", title: "Movie 1" },
       { imdbID: "2", title: "Movie 2" },
@@ -93,7 +93,7 @@ describe("MovieGrid Component", () => {
     });
   });
 
-  test("does not render pagination when results are empty", async () => {
+  it("does not render pagination when results are empty", async () => {
     store = mockStore({
       movies: { status: "succeeded", results: [], error: null },
     });

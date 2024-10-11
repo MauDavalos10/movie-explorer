@@ -3,13 +3,13 @@ import { render, screen, fireEvent } from "@testing-library/react";
 import "@testing-library/jest-dom";
 import { Provider } from "react-redux";
 import { configureStore } from "@reduxjs/toolkit";
-import SearchInput from "../components/SearchInput";
+import SearchInput from "../SearchInput";
 
-jest.mock("../redux/slices/querySlice", () => ({
+jest.mock("../../redux/slices/querySlice", () => ({
   setQuery: jest.fn((query) => ({ type: "mocked-set-query", payload: query })),
 }));
 
-jest.mock("../redux/slices/movieSlice", () => ({
+jest.mock("../../redux/slices/movieSlice", () => ({
   searchMovies: jest.fn((params) => ({
     type: "mocked-search-movies",
     payload: params,
