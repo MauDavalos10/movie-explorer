@@ -1,10 +1,12 @@
 import React from "react";
 import { Box, Toolbar, AppBar, Typography, Button, Modal } from "@mui/material";
 import MovieIcon from "@mui/icons-material/Movie";
-import { Swiper, SwiperSlide } from "swiper/react";
 import { useSelector } from "react-redux";
 import { RootState } from "../redux/store";
 import MovieCard from "./MovieCard";
+import { Autoplay, Pagination } from "swiper";
+import { Swiper, SwiperSlide } from "swiper/react";
+import "swiper/css";
 
 const Header = () => {
   const [open, setOpen] = React.useState(false);
@@ -30,20 +32,33 @@ const Header = () => {
           </Button>
         </Toolbar>
       </AppBar>
-      <Modal
-        open={open}
-        onClose={handleClose}
-        aria-labelledby="modal-modal-title"
-        aria-describedby="modal-modal-description"
-      >
-        <div className="flex bg-pink-400">
-          <Swiper>
+      <Modal open={open} onClose={handleClose}>
+        <div className="flex items-center md:h-full">
+          <Swiper
+            modules={[Pagination, Autoplay]}
+            autoplay={{
+              delay: 3000,
+              disableOnInteraction: true,
+            }}
+            slidesPerView={1}
+            watchOverflow={true}
+          >
             {favorites.map((favoriteMovie) => (
-              <SwiperSlide className="bg-blue-300" key={favoriteMovie.imdbID}>
+              <SwiperSlide
+                className="flex justify-center"
+                key={favoriteMovie.imdbID}
+              >
                 <MovieCard movie={favoriteMovie} />
               </SwiperSlide>
             ))}
           </Swiper>
+          <div className="absolute left-1/2 top-10 transform -translate-x-1/2">
+            <p className="text-4xl sm:text-5xl md:text-6xl font-bold bg-gradient-to-r from-gray-300 via-gray-400 to-gray-500 text-transparent bg-clip-text shadow-md shadow-gray-500">
+              {favorites.length > 0
+                ? "Press [Esc] to exit Favorite View"
+                : "No Favorite movies added"}
+            </p>
+          </div>
         </div>
       </Modal>
     </Box>
