@@ -6,6 +6,7 @@ import { RootState } from "../redux/store";
 import MovieCard from "./MovieCard";
 import { Autoplay, Pagination } from "swiper";
 import { Swiper, SwiperSlide } from "swiper/react";
+import DisabledByDefaultIcon from "@mui/icons-material/DisabledByDefault";
 import "swiper/css";
 
 const Header = () => {
@@ -33,7 +34,7 @@ const Header = () => {
         </Toolbar>
       </AppBar>
       <Modal open={open} onClose={handleClose}>
-        <div className="flex items-center md:h-full">
+        <div className="flex items-center h-full md:h-full">
           <Swiper
             modules={[Pagination, Autoplay]}
             autoplay={{
@@ -52,12 +53,20 @@ const Header = () => {
               </SwiperSlide>
             ))}
           </Swiper>
-          <div className="absolute left-1/2 top-10 transform -translate-x-1/2">
-            <p className="text-4xl sm:text-5xl md:text-6xl font-bold bg-gradient-to-r from-gray-300 via-gray-400 to-gray-500 text-transparent bg-clip-text shadow-md shadow-gray-500">
-              {favorites.length > 0
-                ? "Press [Esc] to exit Favorite View"
-                : "No Favorite movies added"}
-            </p>
+          <div className="absolute left-1/2 top-20 transform -translate-x-1/2">
+            <span className="flex bg-[#3b3b3b] gap-2 rounded-md p-2">
+              <p className="text-4xl md:text-md text-yellow-400">
+                {favorites.length > 0
+                  ? "Favorite View"
+                  : "No Favorite movies added"}
+              </p>
+              <button onClick={handleClose}>
+                <DisabledByDefaultIcon
+                  fontSize={"large"}
+                  className="text-yellow-400"
+                />
+              </button>
+            </span>
           </div>
         </div>
       </Modal>
