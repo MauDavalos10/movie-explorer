@@ -33,7 +33,11 @@ const Header = () => {
           </Button>
         </Toolbar>
       </AppBar>
-      <Modal open={open} onClose={handleClose}>
+      <Modal
+        open={open}
+        onClose={handleClose}
+        style={{ backdropFilter: "blur(2px)" }}
+      >
         <div className="flex items-center h-full md:h-full">
           <Swiper
             modules={[Pagination, Autoplay]}
@@ -55,7 +59,7 @@ const Header = () => {
           </Swiper>
           <div className="absolute left-1/2 top-20 transform -translate-x-1/2">
             <span className="flex bg-[#3b3b3b] gap-2 rounded-md p-2 items-center">
-              <p className="text-md md:text-2xl text-yellow-400 text-nowrap">
+              <p className="text-md font-semibold md:text-2xl text-yellow-400 text-nowrap">
                 {favorites.length > 0
                   ? "Favorite Movies Panel"
                   : "No Favorite movies added"}
