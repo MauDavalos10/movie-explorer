@@ -55,9 +55,9 @@ const Header = () => {
           </Swiper>
           <div className="absolute left-1/2 top-20 transform -translate-x-1/2">
             <span className="flex bg-[#3b3b3b] gap-2 rounded-md p-2 items-center">
-              <p className="text-lg md:text-sm text-yellow-400">
+              <p className="text-md md:text-2xl text-yellow-400 text-nowrap">
                 {favorites.length > 0
-                  ? "Favorite View"
+                  ? "Favorite Movies Panel"
                   : "No Favorite movies added"}
               </p>
               <button onClick={handleClose}>
