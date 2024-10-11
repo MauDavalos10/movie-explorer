@@ -57,7 +57,7 @@ const Header = () => {
               </SwiperSlide>
             ))}
           </Swiper>
-          <div className="absolute left-1/2 top-20 transform -translate-x-1/2">
+          <div className="absolute left-1/2 top-20 md:top-10 sm:top-5 transform -translate-x-1/2">
             <span className="flex bg-[#3b3b3b] gap-2 rounded-md p-2 items-center">
               <p className="text-md font-semibold md:text-2xl text-yellow-400 text-nowrap">
                 {favorites.length > 0
